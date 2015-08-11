@@ -53,6 +53,8 @@ i/provider/push?name$
 
 ## Product
 
+### Product Push
+
 #### pull all providers
 ```
 i/product/pull
@@ -63,7 +65,9 @@ i/product/pull
 i/product/pull?name=$
 ```
 
+### Product Pull
+
 #### push product
 ```
-i/product/push?name$&code=$&provider_id=$&category_id=$
+i/product/push?name=$&code=$&provider_id=$&category_id=$
 ```
