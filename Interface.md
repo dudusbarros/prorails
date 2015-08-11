@@ -5,19 +5,19 @@ i/
 
 ## Data (backup)
 
-#### Pull all data (export backup)
+#### Pull all data (export backup) (get all)
 ```
 i/pull
 ```
 
-#### Push data (import backup)
+#### Push data (import backup) (add)
 ```
 i/push
 ```
 
 ## User
 
-#### pull all users
+#### pull all users (get all)
 ```
 i/user/pull
 ```
@@ -27,7 +27,7 @@ i/user/pull
 i/user/pull?name=$
 ```
 
-#### push user
+#### push user (add)
 ```
 i/user/push?name$
 ```
@@ -36,17 +36,17 @@ i/user/push?name$
 
 Providers (Aka fornecedores) are owners of products
 
-#### pull all providers
+#### pull all providers (get all)
 ```
 i/provider/pull
 ```
 
-#### pull  params
+#### pull params
 ```
 i/provider/pull?name=$
 ```
 
-#### push provider
+#### push provider (add)
 ```
 i/provider/push?name$
 ```
@@ -55,19 +55,40 @@ i/provider/push?name$
 
 ### Product Push
 
-#### pull all providers
+#### pull all products (get all)
 ```
 i/product/pull
 ```
 
-#### pull  params
+#### pull params
 ```
 i/product/pull?name=$
 ```
 
 ### Product Pull
 
-#### push product
+#### push product (add)
+```
+i/product/push?name=$&code=$&provider_id=$&category_id=$
+```
+
+## Category
+
+### Category Push
+
+#### pull all categories (get all)
+```
+i/product/pull
+```
+
+#### pull params
+```
+i/product/pull?name=$
+```
+
+### Category Pull
+
+#### push category (add)
 ```
 i/product/push?name=$&code=$&provider_id=$&category_id=$
 ```
