@@ -1,4 +1,4 @@
-# Web Api directory
+# WebAPI directory
 ```
 i/
 ```
