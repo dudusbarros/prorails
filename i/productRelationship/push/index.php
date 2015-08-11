@@ -31,7 +31,7 @@ try {
 
 		$o->push($c);
 
-		print_r($o);
+		print_r($o->toJSON());
 
 	}
 

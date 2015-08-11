@@ -37,10 +37,8 @@ try {
 
 		$o->push($c);
 
-		print_r($o);
+		print_r($o->toJSON());
 
-	} else {
-		echo 'oi';
 	}
 
 } catch (Exception $e) {

@@ -31,7 +31,7 @@ try {
 			$pull = new RelationshipPull($r, $c);
 			array_push($a, $pull);
 		}
-		print_r($a);
+		print_r(json_encode($a));
 	}
 
 } catch (Exception $e) {

@@ -33,7 +33,7 @@ try {
 			$pull = new UserPull($r, $c);
 			array_push($a, $pull);
 		}
-		print_r($a);
+		print_r(json_encode($a));
 	}
 
 

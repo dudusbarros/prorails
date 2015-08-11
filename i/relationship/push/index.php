@@ -26,7 +26,7 @@ try {
 
 	$o->push($c);
 
-	print_r($o);
+	print_r($o->toJSON());
 
 } catch (Exception $e) {
 	echo $e->getMessage(), "\n";
