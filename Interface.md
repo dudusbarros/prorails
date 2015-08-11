@@ -32,18 +32,19 @@ i/user/pull?name=$
 i/user/push?name$
 ```
 
-#### Provider
+## Provider
 
 #### pull all providers
 ```
 i/provider/pull
 ```
 
-#### pull paramns
+#### pull  params
 ```
 i/provider/pull?name=$
 ```
 
 #### push provider
 ```
-i/provider/push?name$```
+i/provider/push?name$
+```
