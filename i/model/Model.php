@@ -7,13 +7,6 @@
  */
 
 class Model {
-	public $user;
-	public $provider;
-	public $category;
-	public $product;
-	public $relationship;
-	public $productRelationship;
-
 	/**
 	 * @return string
 	 */

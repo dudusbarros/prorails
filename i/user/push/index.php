@@ -22,11 +22,15 @@ try {
 	$connection = new Connection();
 	$c = $connection->getConnection();
 
-	$user = new User();
-	$user->setQueryValue('dudu');
-	print_r($user);
+	if ($name = $_GET['name']) {
 
-	print_r($user->pull($c));
+		$o = new User();
+		$o->name = $name;
+		$o->push($c);
+
+		print_r($o->toJSON());
+
+	}
 
 } catch (Exception $e) {
 	echo $e->getMessage(), "\n";

@@ -6,12 +6,12 @@
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
 
-class UserPull extends Model {
+class CategoryPull extends Model {
 
 	public function __construct($r, $c)
 	{
-		$this->user = new User();
-		$this->user->fill(mysqli_fetch_assoc($r));
+		$this->category = new Category();
+		$this->category->fill(mysqli_fetch_assoc($r));
 	}
 
 }
