@@ -116,5 +116,10 @@ i/productRelationship/pull?relationship_id=$
 
 #### push relationship (add)
 ```
+i/relationship/push/
+```
+
+#### push some product to relationship (add)
+```
 i/productRelationship/push/?relationship_id=$?product_id=$
 ```
