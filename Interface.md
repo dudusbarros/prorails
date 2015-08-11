@@ -3,17 +3,19 @@
 i/
 ```
 
-### Pull all data
+## Data
+
+### Pull all data (export backup)
 ```
 i/pull
 ```
 
-### Push data
+### Push data (import backup)
 ```
 i/push
 ```
 
-### User
+## User
 
 ### pull all users
 ```
