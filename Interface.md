@@ -94,3 +94,27 @@ i/category/pull?name=$
 ```
 i/category/push?name=$
 ```
+
+## Product Relationships
+
+Product relationships group all product with same name (or similar)
+
+### Relationship Push
+
+#### pull all relationships (get all)
+```
+i/productRelationship/pull
+```
+
+#### pull params
+```
+i/productRelationship/pull?product_id=$
+i/productRelationship/pull?relationship_id=$
+```
+
+### Relationship Pull
+
+#### push relationship (add)
+```
+i/productRelationship/push?relationship_id=$?product_id=$
+```
