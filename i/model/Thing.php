@@ -23,26 +23,32 @@ class Thing
 	{
 		$a = new ReflectionObject($this);                           // get reflection of object
 		$b = $a->getProperties(ReflectionProperty::IS_PUBLIC);      // get all public properties
-		$o = (array)$this;                                         // parse array to get value with key
+		$o = (array)$this;                                          // parse array to get value with key
 
-		$ok = array();      // object key
-		$ov = array();      // object value
+		if (count($b) > 1) {
 
-		for ($i = count($b); $i--;)
-			if ($b[$i]->name != '_id') {
-				array_push($ok, $b[$i]->name);
-				array_push($ov, '"' . $o[$b[$i]->name] . '"');
+			$ok = array();      // object key
+			$ov = array();      // object value
+
+			for ($i = count($b); $i--;)
+				if ($b[$i]->name != '_id') {
+					array_push($ok, $b[$i]->name);
+					array_push($ov, '"' . $o[$b[$i]->name] . '"');
+				}
+
+			$n = ' ' . lcfirst(get_class($this)) . ' ';     // table name
+			$k = '(';                                       // key content
+			$v = '(';                                       // value content
+
+			for ($i = count($ok); $i--;) {
+				$s = ',';
+				if ($i < 1) $s = ') ';
+				$k .= $ok[$i] . $s;
+				$v .= $ov[$i] . $s;
 			}
 
-		$n = ' ' . lcfirst(get_class($this)) . ' ';     // table name
-		$k = '(';                                       // key content
-		$v = '(';                                       // value content
-
-		for ($i = count($ok); $i--;) {
-			$s = ',';
-			if ($i < 1) $s = ') ';
-			$k .= $ok[$i] . $s;
-			$v .= $ov[$i] . $s;
+		} else {
+			return 'INSERT INTO ' . lcfirst(get_class($this)) . ' () VALUES ()';
 		}
 
 		return 'INSERT INTO' . $n . $k . 'VALUES ' . $v;
@@ -90,7 +96,10 @@ class Thing
 	 */
 	public function push($c)
 	{
-		if ($c->query($this->buildInsertQuery())) $this->setId($c->insert_id);
+		$q = $this->buildInsertQuery();
+		if ($q)
+			if ($c->query($q))
+				$this->setId($c->insert_id);
 		else echo $c->error;
 	}
 
