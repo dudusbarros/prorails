@@ -34,6 +34,8 @@ i/user/push?name$
 
 ## Provider
 
+Providers (Aka fornecedores) are owners of products
+
 #### pull all providers
 ```
 i/provider/pull
