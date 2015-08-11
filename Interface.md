@@ -50,3 +50,24 @@ i/provider/pull?name=$
 ```
 i/provider/push?name$
 ```
+
+## Product
+
+### Product Push
+
+#### pull all providers
+```
+i/product/pull
+```
+
+#### pull  params
+```
+i/product/pull?name=$
+```
+
+### Product Pull
+
+#### push product
+```
+i/product/push?name=$&code=$&provider_id=$&category_id=$
+```
