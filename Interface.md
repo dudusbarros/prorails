@@ -5,44 +5,43 @@ i/
 
 ### Pull all data
 ```
-i/p
-```ull
+i/pull
+```
 
 ### Push data
 ```
-i/p
-```ush
+i/push
+```
 
 ### User
 
 ### pull all users
 ```
-i/u
-```ser/pull
+i/user/pull
+```
 
 ### pull paramns
 ```
-i/u
-```ser/pull?name=$
+i/user/pull?name=$
+```
 
 ### push user
 ```
-i/u
-```ser/push?name$
+i/user/push?name$
+```
 
 ### Provider
 
 ### pull all providers
 ```
-i/p
-```rovider/pull
+i/provider/pull
+```
 
 ### pull paramns
 ```
-i/p
-```rovider/pull?name=$
+i/provider/pull?name=$
+```
 
 ### push provider
 ```
-i/p
-```rovider/push?name$
+i/provider/push?name$```
