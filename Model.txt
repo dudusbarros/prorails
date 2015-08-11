@@ -29,7 +29,12 @@ product
 	category_id
 	timestamp
 
+relationship
+	_id
+	timestamp
+
 productRelationship
 	_id
+	relationship_id
 	product_id
 	timestamp
