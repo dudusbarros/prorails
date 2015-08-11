@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Magma ProRails Relationship Pull Server v1.1.0 (http://getvilla.org/)
+ * Magma ProRails ProductRelationship Pull Server v1.1.0 (http://getvilla.org/)
  * Copyright 2014-2015 Magma Fantastico
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
