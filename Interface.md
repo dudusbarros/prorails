@@ -1,30 +1,48 @@
 # Web Api directory
+```
 i/
+```
 
 ### Pull all data
-i/pull
+```
+i/p
+```ull
 
 ### Push data
-i/push
+```
+i/p
+```ush
 
 ### User
 
 ### pull all users
-i/user/pull
+```
+i/u
+```ser/pull
 
 ### pull paramns
-i/user/pull?name=$
+```
+i/u
+```ser/pull?name=$
 
 ### push user
-i/user/push?name$
+```
+i/u
+```ser/push?name$
 
 ### Provider
 
 ### pull all providers
-i/provider/pull
+```
+i/p
+```rovider/pull
 
 ### pull paramns
-i/provider/pull?name=$
+```
+i/p
+```rovider/pull?name=$
 
 ### push provider
-i/provider/push?name$
+```
+i/p
+```rovider/push?name$
