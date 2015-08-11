@@ -1,0 +1,34 @@
+Model
+
+User
+Provider
+Category
+Product
+ProductRelationship
+
+user
+	_id
+	name
+	timestamp
+
+provider
+	_id
+	name
+
+category
+	_id
+	name
+	timestamp
+
+product
+	_id
+	provider_id
+	code
+	name
+	category_id
+	timestamp
+
+productRelationship
+	_id
+	product_id
+	timestamp

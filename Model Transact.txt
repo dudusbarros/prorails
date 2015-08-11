@@ -1,0 +1,190 @@
+# Protype model transact of ProRails
+
+# adding product 1 and 2
+
+start
+	add product 1
+	commit
+end
+
+start
+	add product 2
+	commit
+end
+
+# creating a relationship with product 1 and 2
+
+start
+
+	create relationship with
+		product 1,
+		product 2
+
+		find relationship with product 1
+			OK (false)
+		find relationship with product 2
+			OK (false)
+
+		add relationship 1
+
+		add product 1 to relationship 1
+		add product 2 to relationship 1
+
+		commit
+
+end
+
+start
+	add product 3
+	commit
+end
+
+start
+	add product 4
+	commit
+end
+
+start
+
+	add product 3 to relationship 1
+
+		find relationship with product 3
+			OK (false)
+
+		commit
+
+end
+
+start
+
+	add product 4 to relationship 1
+
+		find relationship with product 4
+			OK (false)
+
+		commit
+
+end
+
+# removing the product 3
+# the WHILE is necessary to prevent problems
+# r == current relationshipt
+
+start
+	
+	remove product 3
+
+		find relationship with product 3
+			OK (true)
+
+			while (exists relationship with product 3)
+				
+				remove product 3 from r
+
+				if (relationship has another product)
+					remove r
+
+		commit
+
+end
+
+start
+	add product 5
+		commit
+end
+
+start
+	add product 6
+		commit
+end
+
+# creating a relationship with product 5 and 6
+
+start
+
+	create relationship with
+		product 5,
+		product 6
+
+		find relationship with product 5
+			OK (false)
+		find relationship with product 6
+			OK (false)
+
+		add relationship 2
+
+		add product 5 to relationship 2
+		add product 6 to relationship 2
+
+		commit
+
+end
+
+# removing product 6
+# it will remove the relationship 2
+# the product 5 will be alone (whitout relationship)
+
+start
+	
+	remove product 6
+
+		find relationship with product 6
+			OK (true)
+
+			while (r = relationship with product 6)
+				
+				remove product 6 from r
+
+				if (relationship has another product)
+					remove r
+
+		commit
+
+end
+
+start
+	add product 7
+		commit
+end
+
+# creating a relationship with product 5 and 7
+
+start
+
+	create relationship with
+		product 5,
+		product 7
+
+		find relationship with product 5
+			OK (false)
+		find relationship with product 7
+			OK (false)
+
+		add relationship 3
+
+		add product 5 to relationship 3
+		add product 7 to relationship 3
+
+		commit
+
+end
+
+# adding the product 4 to relationship 3
+
+start
+
+	add product 4 to relationship 3
+
+		find relationship with product 4
+			OK (true)
+
+			while (r = relationship with product 6)
+					
+				remove product 6 from r
+
+				if (relationship has another product)
+					remove r
+
+		commit
+
+end
