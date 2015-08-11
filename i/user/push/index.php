@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Magma ProRails User Pull Server v1.1.0 (http://getvilla.org/)
+ * Magma ProRails User Push Server v1.1.0 (http://getvilla.org/)
  * Copyright 2014-2015 Magma Fantastico
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
@@ -23,12 +23,10 @@ try {
 	$c = $connection->getConnection();
 
 	$user = new User();
-
+	$user->setQueryValue('dudu');
 	print_r($user);
 
-	$user->pull($c);
-
-	print_r($user);
+	print_r($user->pull($c));
 
 } catch (Exception $e) {
 	echo $e->getMessage(), "\n";

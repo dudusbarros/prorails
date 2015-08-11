@@ -10,6 +10,7 @@ header('Content-Type: application/json; charset=UTF-8;');
 require_once('../../var/connection.php');
 require_once('../../model/Model.php');
 require_once('../../model/Thing.php');
+require_once('../../model/UserPull.php');
 require_once('../../model/User.php');
 
 function __autoload($name) {
@@ -17,5 +18,25 @@ function __autoload($name) {
 	throw new Exception("Unable to load $name.");
 }
 
-$connection = new Connection();
-$c = $connection->getConnection();
+try {
+
+	$connection = new Connection();
+	$c = $connection->getConnection();
+
+	$u = new User();
+	$u->setQueryName('name');
+	$u->setQueryValue('');
+
+	if ($r = $u->pull($c)) {
+		$a = array();
+		for ($i = $r->num_rows; $i--; ) {
+			$pull = new Pull($r, $c);
+			array_push($a, $pull);
+		}
+		print_r(json_encode($a));
+	}
+
+
+} catch (Exception $e) {
+	echo $e->getMessage(), "\n";
+}
