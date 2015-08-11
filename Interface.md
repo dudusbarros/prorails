@@ -29,7 +29,7 @@ i/user/pull?name=$
 
 #### push user (add)
 ```
-i/user/push?name$
+i/user/push/?name$
 ```
 
 ## Provider
@@ -48,7 +48,7 @@ i/provider/pull?name=$
 
 #### push provider (add)
 ```
-i/provider/push?name$
+i/provider/push/?name$
 ```
 
 ## Product
@@ -70,7 +70,7 @@ i/product/pull?name=$
 
 #### push product (add)
 ```
-i/product/push?name=$&code=$&provider_id=$&category_id=$
+i/product/push/?name=$&code=$&provider_id=$&category_id=$
 ```
 
 ## Category
@@ -92,7 +92,7 @@ i/category/pull?name=$
 
 #### push category (add)
 ```
-i/category/push?name=$
+i/category/push/?name=$
 ```
 
 ## Product Relationships
@@ -116,5 +116,5 @@ i/productRelationship/pull?relationship_id=$
 
 #### push relationship (add)
 ```
-i/productRelationship/push?relationship_id=$?product_id=$
+i/productRelationship/push/?relationship_id=$?product_id=$
 ```
