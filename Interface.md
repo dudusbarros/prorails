@@ -62,6 +62,7 @@ i/product/pull
 
 #### pull params
 ```
+i/product/pull?_id=$
 i/product/pull?name=$
 ```
 
@@ -78,17 +79,18 @@ i/product/push?name=$&code=$&provider_id=$&category_id=$
 
 #### pull all categories (get all)
 ```
-i/product/pull
+i/category/pull
 ```
 
 #### pull params
 ```
-i/product/pull?name=$
+i/category/pull?_id=$
+i/category/pull?name=$
 ```
 
 ### Category Pull
 
 #### push category (add)
 ```
-i/product/push?name=$&code=$&provider_id=$&category_id=$
+i/category/push?name=$
 ```
