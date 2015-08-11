@@ -5,45 +5,45 @@ i/
 
 ## Data
 
-### Pull all data (export backup)
+#### Pull all data (export backup)
 ```
 i/pull
 ```
 
-### Push data (import backup)
+#### Push data (import backup)
 ```
 i/push
 ```
 
 ## User
 
-### pull all users
+#### pull all users
 ```
 i/user/pull
 ```
 
-### pull paramns
+#### pull params
 ```
 i/user/pull?name=$
 ```
 
-### push user
+#### push user
 ```
 i/user/push?name$
 ```
 
-### Provider
+#### Provider
 
-### pull all providers
+#### pull all providers
 ```
 i/provider/pull
 ```
 
-### pull paramns
+#### pull paramns
 ```
 i/provider/pull?name=$
 ```
 
-### push provider
+#### push provider
 ```
 i/provider/push?name$```
