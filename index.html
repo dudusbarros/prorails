@@ -5,6 +5,7 @@
 	<title>ProRails</title>
 	<script src="dist/js/villa.min.js"></script>
 	<link rel="stylesheet" href="dist/css/villa.min.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 	<!--[if lt IE 9]>
 	<link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
 	<link rel="stylesheet" type="text/css" href="dist/css/cross.css"/>
@@ -29,6 +30,29 @@ destroyCategories = function() {
 	document.getElementById('categories').innerHTML = '';
 };
 
+var addCategory;
+addCategory = function(a, d) {
+	var b = a.getElementsByTagName('ul')[0];
+	b.insertBefore(buildCategory(d), b.lastChild);
+};
+
+var createCategory;
+createCategory = function() {
+	var a = this.parentNode;
+	var b = a.querySelector('input');
+
+	$.ajax({
+		cache: false,
+		data: { name: b.value },
+		method: 'get',
+		url: 'i/category/push/',
+		success: function(data) {
+			addCategory(a.parentNode, data);
+		}
+	});
+
+};
+
 var buildCategoryInput;
 buildCategoryInput = function() {
 
@@ -41,6 +65,7 @@ buildCategoryInput = function() {
 	a.innerHTML = 'Nova categoria';
 	a.classList.add('btn');
 	a.classList.add('new');
+	a.addEventListener('click', createCategory);
 
 	e.appendChild(input);
 	e.appendChild(a);
@@ -51,12 +76,14 @@ buildCategoryInput = function() {
 
 var buildCategory;
 buildCategory = function(d) {
+
 	var li = document.createElement('li');
 	var text = document.createTextNode(d.name);
 	li.setAttribute('data-category', d._id);
 	li.appendChild(text);
 
 	return li;
+
 };
 
 var buildCategoriesList;
@@ -73,6 +100,8 @@ buildCategoriesList = function(d) {
 
 var buildCategories;
 buildCategories = function(d) {
+
+	destroyCategories();
 
 	var b = document.getElementById('categories');
 
@@ -98,46 +127,6 @@ getCategory = function() {
 };
 
 getCategory();
-
-/**
-* Product
-*/
-
-var buildProduct;
-buildProduct = function(d) {
-
-	var b = document.body;
-	var e = document.createElement('ul');
-
-	for (var i = d.length; i--; ) {
-		var a = d[i].product;
-
-		var li = document.createElement('li');
-		li.setAttribute('data-category', a.category_id);
-		var text = document.createTextNode(a.name);
-
-		li.appendChild(text);
-		e.appendChild(li);
-	}
-
-	b.insertBefore(e, b.firstChild);
-};
-
-var pullProduct;
-pullProduct = function(a) {
-	$.ajax({
-		cache: false,
-		url: 'i/product/pull/',
-		success: function(data) {
-			buildProduct(data)
-		}
-	});
-};
-
-var getProduct;
-getProduct = function() {
-	pullProduct();
-};
 
 </script>
 
