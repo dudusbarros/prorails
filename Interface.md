@@ -51,6 +51,28 @@ i/provider/pull?name=$
 i/provider/push/?name$
 ```
 
+## Category
+
+### Category Push
+
+#### pull all categories (get all)
+```
+i/category/pull
+```
+
+#### pull params
+```
+i/category/pull?_id=$
+i/category/pull?name=$
+```
+
+### Category Pull
+
+#### push category (add)
+```
+i/category/push/?name=$
+```
+
 ## Product
 
 ### Product Push
@@ -73,26 +95,9 @@ i/product/pull?name=$
 i/product/push/?name=$&code=$&provider_id=$&category_id=$
 ```
 
-## Category
-
-### Category Push
-
-#### pull all categories (get all)
+#### push product (add)
 ```
-i/category/pull
-```
-
-#### pull params
-```
-i/category/pull?_id=$
-i/category/pull?name=$
-```
-
-### Category Pull
-
-#### push category (add)
-```
-i/category/push/?name=$
+i/product/push/?_id=$&name=$&code=$&provider_id=$&category_id=$
 ```
 
 ## Product Relationships
