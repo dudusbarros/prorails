@@ -9,6 +9,12 @@
 class Category extends Thing {
 	public $name;
 
+	public function __construct()
+	{
+		$this->setQueryLimit(0);
+	}
+
+
 	public function fill($a)
 	{
 		$this->_id = $a['_id'];
