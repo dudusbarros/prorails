@@ -1,8 +1,18 @@
 /*!
- * Magma ProRails v0.1.0 (http://getvilla.org/)
+ * Magma ProRails v0.2.0 (http://getvilla.org/)
  * Copyright 2013-2015 Noibe Developers
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
+
+main {
+	max-width: 60em;
+	width: 100%;
+	margin: 0 auto;
+}
+
+h2 {
+	display: none;
+}
 
 ul {
 	list-style: circle;
