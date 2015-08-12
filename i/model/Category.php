@@ -14,7 +14,6 @@ class Category extends Thing {
 		$this->setQueryLimit(0);
 	}
 
-
 	public function fill($a)
 	{
 		$this->_id = $a['_id'];

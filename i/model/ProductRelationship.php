@@ -10,6 +10,11 @@ class ProductRelationship extends Thing {
 	public $product_id;
 	public $relationship_id;
 
+	public function __construct()
+	{
+		$this->setQueryLimit(0);
+	}
+
 	public function fill($a)
 	{
 		$this->_id = $a['_id'];
