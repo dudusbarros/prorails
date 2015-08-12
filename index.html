@@ -16,6 +16,7 @@
 </head>
 <body class="font-grey-900">
 
+<div id="providers"></div>
 <div id="categories"></div>
 
 <script src="dist/js/jquery-2.1.1.min.js"></script>
@@ -25,108 +26,229 @@
  * Category
  */
 
-var destroyCategories;
-destroyCategories = function() {
-	document.getElementById('categories').innerHTML = '';
-};
+	var destroyProvider;
+	destroyProvider = function() {
 
-var addCategory;
-addCategory = function(a, d) {
-	var b = a.getElementsByTagName('ul')[0];
-	b.insertBefore(buildCategory(d), b.lastChild);
-};
+	};
 
-var createCategory;
-createCategory = function() {
-	var a = this.parentNode;
-	var b = a.querySelector('input');
 
-	$.ajax({
-		cache: false,
-		data: { name: b.value },
-		method: 'get',
-		url: 'i/category/push/',
-		success: function(data) {
-			addCategory(a.parentNode, data);
-		}
-	});
+	var addProvider;
+	addProvider = function(a, d) {
+		var b = a.getElementsByTagName('ul')[0];
+		b.appendChild(buildProvider(d));
+	};
 
-};
 
-var buildCategoryInput;
-buildCategoryInput = function() {
+	var createProvider;
+	createProvider = function() {
 
-	var e = document.createElement('div');
+		var a = this.parentNode;
+		var b = a.querySelector('input');
 
-	var input = document.createElement('input');
-	input.id = 'categoryInput';
+		$.ajax({
+			cache: false,
+			data: { name: b.value },
+			method: 'get',
+			url: 'i/provider/push/',
+			success: function(data) {
+				addProvider(a.parentNode, data);
+			}
+		});
 
-	var a = document.createElement('a');
-	a.innerHTML = 'Nova categoria';
-	a.classList.add('btn');
-	a.classList.add('new');
-	a.addEventListener('click', createCategory);
+	};
 
-	e.appendChild(input);
-	e.appendChild(a);
 
-	return e;
+	var buildProviderInput;
+	buildProviderInput = function() {
 
-};
+		var e = document.createElement('div');
 
-var buildCategory;
-buildCategory = function(d) {
+		var input = document.createElement('input');
+		input.id = 'providerInput';
 
-	var li = document.createElement('li');
-	var text = document.createTextNode(d.name);
-	li.setAttribute('data-category', d._id);
-	li.appendChild(text);
+		var a = document.createElement('a');
+		a.innerHTML = 'Novo fornecedor';
+		a.classList.add('btn');
+		a.classList.add('new');
+		a.addEventListener('click', createProvider);
 
-	return li;
+		e.appendChild(input);
+		e.appendChild(a);
 
-};
+		return e;
 
-var buildCategoriesList;
-buildCategoriesList = function(d) {
+	};
 
-	var e = document.createElement('ul');
 
-	for (var i = d.length; i--; )
-		e.appendChild(buildCategory(d[i].category));
+	var buildProvider;
+	buildProvider = function(d) {
 
-	return e;
+		/*
+		* It is simliar to build buildCategory function
+		* */
 
-};
+		var li = document.createElement('li');
+		var text = document.createTextNode(d.name);
+		li.setAttribute('data-provider', d._id);
+		li.appendChild(text);
 
-var buildCategories;
-buildCategories = function(d) {
+		return li;
 
-	destroyCategories();
+	};
 
-	var b = document.getElementById('categories');
 
-	b.insertBefore(buildCategoriesList(d), b.firstChild);
-	b.insertBefore(buildCategoryInput(), b.firstChild);
+	var buildProvidersList;
+	buildProvidersList = function(d) {
 
-};
+		var e = document.createElement('ul');
 
-var pullCategory;
-pullCategory = function(a) {
-	$.ajax({
-		cache: false,
-		url: 'i/category/pull/',
-		success: function(data) {
-			buildCategories(data)
-		}
-	});
-};
+		for (var i = d.length; i--; )
+			e.appendChild(buildProvider(d[i].provider));
 
-var getCategory;
-getCategory = function() {
-	pullCategory();
-};
+		return e;
 
-getCategory();
+	};
+
+
+	var buildProviders;
+	buildProviders = function(d) {
+		destroyProvider();
+
+		var b = document.getElementById('providers');
+
+		b.insertBefore(buildProvidersList(d), b.firstChild);
+		b.insertBefore(buildProviderInput(), b.firstChild);
+	};
+
+
+	var pullProvider;
+	pullProvider = function() {
+		$.ajax({
+			cache: false,
+			url: 'i/provider/pull/',
+			success: function(data) {
+				buildProviders(data);
+			}
+		});
+	};
+
+
+	var getProvider;
+	getProvider = function() {
+		pullProvider();
+	};
+
+	getProvider();
+
+
+
+/**
+ * Category
+ */
+
+	var destroyCategories;
+	destroyCategories = function() {
+		document.getElementById('categories').innerHTML = '';
+	};
+
+	var addCategory;
+	addCategory = function(a, d) {
+		var b = a.getElementsByTagName('ul')[0];
+		b.appendChild(buildCategory(d));
+	};
+
+	var createCategory;
+	createCategory = function() {
+
+		var a = this.parentNode;
+		var b = a.querySelector('input');
+
+		$.ajax({
+			cache: false,
+			data: { name: b.value },
+			method: 'get',
+			url: 'i/category/push/',
+			success: function(data) {
+				addCategory(a.parentNode, data);
+			}
+		});
+
+	};
+
+	var buildCategoryInput;
+	buildCategoryInput = function() {
+
+		var e = document.createElement('div');
+
+		var input = document.createElement('input');
+		input.id = 'categoryInput';
+
+		var a = document.createElement('a');
+		a.innerHTML = 'Nova categoria';
+		a.classList.add('btn');
+		a.classList.add('new');
+		a.addEventListener('click', createCategory);
+
+		e.appendChild(input);
+		e.appendChild(a);
+
+		return e;
+
+	};
+
+	var buildCategory;
+	buildCategory = function(d) {
+
+		var li = document.createElement('li');
+		var text = document.createTextNode(d.name);
+		li.setAttribute('data-category', d._id);
+		li.appendChild(text);
+
+		return li;
+
+	};
+
+	var buildCategoriesList;
+	buildCategoriesList = function(d) {
+
+		var e = document.createElement('ul');
+
+		for (var i = d.length; i--; )
+			e.appendChild(buildCategory(d[i].category));
+
+		return e;
+
+	};
+
+	var buildCategories;
+	buildCategories = function(d) {
+
+		destroyCategories();
+
+		var b = document.getElementById('categories');
+
+		b.insertBefore(buildCategoriesList(d), b.firstChild);
+		b.insertBefore(buildCategoryInput(), b.firstChild);
+
+	};
+
+	var pullCategory;
+	pullCategory = function() {
+		$.ajax({
+			cache: false,
+			url: 'i/category/pull/',
+			success: function(data) {
+				buildCategories(data)
+			}
+		});
+	};
+
+	var getCategory;
+	getCategory = function() {
+		pullCategory();
+	};
+
+	getCategory();
 
 </script>
 

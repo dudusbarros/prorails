@@ -4,6 +4,15 @@
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
 
+ul {
+	list-style: circle;
+	margin-left: 1em;
+}
+
+ul li {
+	display: list-item;
+}
+
 a.btn {
 	cursor: pointer;
 }
