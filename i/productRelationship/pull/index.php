@@ -28,7 +28,8 @@ try {
 	if ($r = $o->pull($c)) {
 		$a = array();
 		for ($i = $r->num_rows; $i--; ) {
-			$pull = new ProductRelationshipPull($r, $c);
+			$pull = new ProductRelationship();
+			$pull->fill(mysqli_fetch_assoc($r));
 			array_push($a, $pull);
 		}
 		print_r(json_encode($a));
