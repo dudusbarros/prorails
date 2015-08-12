@@ -22,13 +22,27 @@ try {
 	$connection = new Connection();
 	$c = $connection->getConnection();
 
-	// test the four attributes
-	if (($name = $_GET['name']) &&
-		($provider_id = $_GET['provider_id']) &&
-		($code = $_GET['code']) &&
-		(($category_id = $_GET['category_id']))) {
+	$o = new Product();
 
-		$o = new Product();
+	if ($_id = $_GET['_id']) {      // is update
+
+		$o->setQueryName('_id');
+		$o->setQueryValue($_id);
+
+		$r = $o->pull($c);
+		$o->fill(mysqli_fetch_assoc($r));
+
+		if ($name = $_GET['name']) $o->name = $name;
+		if ($provider_id = $_GET['provider_id']) $o->provider_id = $provider_id;
+		if ($code = $_GET['code']) $o->code = $code;
+		if ($category_id = $_GET['category_id']) $o->category_id = $category_id;
+
+		$o->push($c);
+
+	} else if (($name = $_GET['name']) &&
+			   ($provider_id = $_GET['provider_id']) &&
+			   ($code = $_GET['code']) &&
+			   (($category_id = $_GET['category_id']))) {   // is new
 
 		$o->name = $name;
 		$o->provider_id = $provider_id;
@@ -37,9 +51,9 @@ try {
 
 		$o->push($c);
 
-		print_r($o->toJSON());
-
 	}
+
+	print_r($o->toJSON());
 
 } catch (Exception $e) {
 	echo $e->getMessage(), "\n";

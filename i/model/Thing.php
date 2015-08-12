@@ -91,16 +91,52 @@ class Thing
 	}
 
 	/**
+	 * Constrói string sql para utilizar na query do push
+	 * @return string
+	 */
+	private function buildUpdateQuery()
+	{
+		$a = new ReflectionObject($this);                           // get reflection of object
+		$b = $a->getProperties(ReflectionProperty::IS_PUBLIC);      // get all public properties
+		$o = (array)$this;                                          // parse array to get value with key
+
+		$ok = array();      // object key
+		$ov = array();      // object value
+
+		for ($i = count($b); $i--;)
+			if ($b[$i]->name != '_id') {
+				array_push($ok, $b[$i]->name);
+				array_push($ov, '"' . $o[$b[$i]->name] . '"');
+			}
+
+		$n = ' ' . lcfirst(get_class($this)) . ' ';     // table name
+		$s = ' ';                                       // set content
+		$d = ', ';                                      // divider content
+
+		for ($i = count($ok); $i--;) {
+			if ($i < 1) $d = ' ';
+			$s .= $ok[$i] . ' = ' . $ov[$i] . $d;
+		}
+
+		$w = '_id = ' . $this->getId();
+
+		return 'UPDATE' . $n . 'SET' . $s . 'WHERE ' . $w;
+
+	}
+
+	/**
 	 * Executa push utilizando a conexão e a string construída
 	 * @param mysqli $c
 	 */
 	public function push($c)
 	{
-		$q = $this->buildInsertQuery();
+		if ($this->getId()) $q = $this->buildUpdateQuery();
+		else $q = $this->buildInsertQuery();
+
 		if ($q)
 			if ($c->query($q))
 				$this->setId($c->insert_id);
-		else echo $c->error;
+			else echo $c->error;
 	}
 
 	/**
