@@ -30,7 +30,8 @@ try {
 	if ($r = $o->pull($c)) {
 		$a = array();
 		for ($i = $r->num_rows; $i--; ) {
-			$pull = new ProductPull($r, $c);
+			$pull = new Product();
+			$pull->fill(mysqli_fetch_assoc($r));
 			array_push($a, $pull);
 		}
 		print_r(json_encode($a));
