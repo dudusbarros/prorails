@@ -1,5 +1,5 @@
 /*!
- * Magma ProRails API v0.7.0 (http://getvilla.org/)
+ * Magma ProRails API v0.7.5 (http://getvilla.org/)
  * Copyright 2013-2015 Noibe Developers
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
