@@ -225,18 +225,7 @@ buildUserInput = function() {
 
 var buildUser;
 buildUser = function(d) {
-
-	/*
-	 * It is simliar to build buildCategory and buildProviders functions
-	 * */
-
-	var li = document.createElement('li');
-	var text = document.createTextNode(d.name);
-	li.setAttribute('data-user', d._id);
-	li.appendChild(text);
-
-	return li;
-
+	return buildName(d, 'user');
 };
 
 var pullUser;
@@ -300,18 +289,7 @@ buildProviderInput = function() {
 
 var buildProvider;
 buildProvider = function(d) {
-
-	/*
-	 * It is simliar to build buildCategory function
-	 * */
-
-	var li = document.createElement('li');
-	var text = document.createTextNode(d.name);
-	li.setAttribute('data-provider', d._id);
-	li.appendChild(text);
-
-	return li;
-
+	return buildName(d, 'provider');
 };
 
 var pullProvider;
@@ -375,14 +353,7 @@ buildCategoryInput = function() {
 
 var buildCategory;
 buildCategory = function(d) {
-
-	var li = document.createElement('li');
-	var text = document.createTextNode(d.name);
-	li.setAttribute('data-category', d._id);
-	li.appendChild(text);
-
-	return li;
-
+	return buildName(d, 'category');
 };
 
 var pullCategory;
