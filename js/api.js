@@ -1,34 +1,79 @@
 /*!
- * Magma ProRails API v0.6.0 (http://getvilla.org/)
+ * Magma ProRails API v0.7.0 (http://getvilla.org/)
  * Copyright 2013-2015 Noibe Developers
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
 
 /*
- * Public Data
- */
+* Public Data
+* */
 
 var Product = [];
 var Users = [];
 var Providers = [];
 var Categories = [];
 
+/*
+* Build Functions
+* */
 
+var add;
+add = function(a, d, f) {
+
+	var b = a.getElementsByTagName('ul')[0];
+	b.appendChild(f(d));
+
+};
+
+var buildName;
+buildName = function(d, singular) {
+
+	var li = document.createElement('li');
+	var text = document.createTextNode(d.name);
+	li.setAttribute('data-' + singular, d._id);
+	li.appendChild(text);
+
+	return li;
+
+};
+
+var buildList;
+buildList = function(d, f) {
+
+	var e = document.createElement('ul');
+
+	for (var i = d.length; i--; )
+		e.appendChild(f(d[i]));
+
+	return e;
+
+};
+
+var destroy;
+destroy = function(plural) {
+	document.getElementById(plural).innerHTML = '';
+};
+
+var build;
+build = function(data, singular, plural, list, input) {
+
+	destroy(plural);
+
+	var b = document.getElementById(plural);
+
+	b.insertBefore(buildList(data, list), b.firstChild);
+	b.insertBefore(input(), b.firstChild);
+
+};
+
+var getData;
+getData = function(plural, f) {
+	if (document.getElementById(plural)) f();
+};
 
 /*
  * Product
  */
-
-var destroyProducts;
-destroyProducts = function() {
-	document.getElementById('products').innerHTML = '';
-};
-
-var addProduct;
-addProduct = function(a, d) {
-	var b = a.getElementsByTagName('ul')[0];
-	b.appendChild(buildProduct(d));
-};
 
 var createProduct;
 createProduct = function() {
@@ -50,7 +95,7 @@ createProduct = function() {
 		method: 'get',
 		url: 'i/product/push/',
 		success: function(data) {
-			addProduct(a.parentNode, data);
+			add(a.parentNode, data, buildProduct);
 		}
 	});
 
@@ -119,30 +164,6 @@ buildProduct = function(d) {
 
 };
 
-var buildProductsList;
-buildProductsList = function(d) {
-
-	var e = document.createElement('ul');
-
-	for (var i = d.length; i--; )
-		e.appendChild(buildProduct(d[i]));
-
-	return e;
-
-};
-
-var buildProducts;
-buildProducts = function(d) {
-
-	destroyProducts();
-
-	var b = document.getElementById('products');
-
-	b.insertBefore(buildProductsList(d), b.firstChild);
-	b.insertBefore(buildProductInput(), b.firstChild);
-
-};
-
 var pullProduct;
 pullProduct = function() {
 	$.ajax({
@@ -153,30 +174,14 @@ pullProduct = function() {
 		},
 		success: function(data) {
 			Product = data;
-			buildProducts(data);
+			build(data, 'product', 'products', buildProduct, buildProductInput);
 		}
 	});
-};
-
-var getProduct;
-getProduct = function() {
-	if (document.getElementById('products')) pullProduct();
 };
 
 /*
  * User
  */
-
-var destroyUsers;
-destroyUsers = function() {
-	document.getElementById('users').innerHTML = '';
-};
-
-var addUser;
-addUser = function(a, d) {
-	var b = a.getElementsByTagName('ul')[0];
-	b.appendChild(buildUser(d));
-};
 
 var createUser;
 createUser = function() {
@@ -190,7 +195,7 @@ createUser = function() {
 		method: 'get',
 		url: 'i/user/push/',
 		success: function(data) {
-			addUser(a.parentNode, data);
+			add(a.parentNode, data, buildUser);
 		}
 	});
 
@@ -234,30 +239,6 @@ buildUser = function(d) {
 
 };
 
-var buildUsersList;
-buildUsersList = function(d) {
-
-	var e = document.createElement('ul');
-
-	for (var i = d.length; i--; )
-		e.appendChild(buildUser(d[i]));
-
-	return e;
-
-};
-
-var buildUsers;
-buildUsers = function(d) {
-
-	destroyUsers();
-
-	var b = document.getElementById('users');
-
-	b.insertBefore(buildUsersList(d), b.firstChild);
-	b.insertBefore(buildUserInput(), b.firstChild);
-
-};
-
 var pullUser;
 pullUser = function() {
 	$.ajax({
@@ -268,30 +249,14 @@ pullUser = function() {
 		},
 		success: function(data) {
 			Users = data;
-			buildUsers(data);
+			build(data, 'user', 'users', buildUser, buildUserInput);
 		}
 	});
 };
 
-var getUser;
-getUser = function() {
-	if (document.getElementById('users')) pullUser();
-};
-
 /*
- * Category
- */
-
-var destroyProviders;
-destroyProviders = function() {
-	document.getElementById('providers').innerHTML = '';
-};
-
-var addProvider;
-addProvider = function(a, d) {
-	var b = a.getElementsByTagName('ul')[0];
-	b.appendChild(buildProvider(d));
-};
+* Provider
+* */
 
 var createProvider;
 createProvider = function() {
@@ -305,7 +270,7 @@ createProvider = function() {
 		method: 'get',
 		url: 'i/provider/push/',
 		success: function(data) {
-			addProvider(a.parentNode, data);
+			add(a.parentNode, data, buildProvider);
 		}
 	});
 
@@ -349,30 +314,6 @@ buildProvider = function(d) {
 
 };
 
-var buildProvidersList;
-buildProvidersList = function(d) {
-
-	var e = document.createElement('ul');
-
-	for (var i = d.length; i--; )
-		e.appendChild(buildProvider(d[i]));
-
-	return e;
-
-};
-
-var buildProviders;
-buildProviders = function(d) {
-
-	destroyProviders();
-
-	var b = document.getElementById('providers');
-
-	b.insertBefore(buildProvidersList(d), b.firstChild);
-	b.insertBefore(buildProviderInput(), b.firstChild);
-
-};
-
 var pullProvider;
 pullProvider = function() {
 	$.ajax({
@@ -383,30 +324,14 @@ pullProvider = function() {
 		},
 		success: function(data) {
 			Providers = data;
-			buildProviders(data);
+			build(data, 'provider', 'providers', buildProvider, buildProviderInput);
 		}
 	});
 };
 
-var getProvider;
-getProvider = function() {
-	if (document.getElementById('providers')) pullProvider();
-};
-
 /*
- * Category
- */
-
-var destroyCategories;
-destroyCategories = function() {
-	document.getElementById('categories').innerHTML = '';
-};
-
-var addCategory;
-addCategory = function(a, d) {
-	var b = a.getElementsByTagName('ul')[0];
-	b.appendChild(buildCategory(d));
-};
+* Category
+* */
 
 var createCategory;
 createCategory = function() {
@@ -420,7 +345,7 @@ createCategory = function() {
 		method: 'get',
 		url: 'i/category/push/',
 		success: function(data) {
-			addCategory(a.parentNode, data);
+			add(a.parentNode, data, buildCategory);
 		}
 	});
 
@@ -460,30 +385,6 @@ buildCategory = function(d) {
 
 };
 
-var buildCategoriesList;
-buildCategoriesList = function(d) {
-
-	var e = document.createElement('ul');
-
-	for (var i = d.length; i--; )
-		e.appendChild(buildCategory(d[i]));
-
-	return e;
-
-};
-
-var buildCategories;
-buildCategories = function(d) {
-
-	destroyCategories();
-
-	var b = document.getElementById('categories');
-
-	b.insertBefore(buildCategoriesList(d), b.firstChild);
-	b.insertBefore(buildCategoryInput(), b.firstChild);
-
-};
-
 var pullCategory;
 pullCategory = function() {
 	$.ajax({
@@ -494,12 +395,7 @@ pullCategory = function() {
 		},
 		success: function(data) {
 			Categories = data;
-			buildCategories(data);
+			build(data, 'category', 'categories', buildCategory, buildCategoryInput);
 		}
 	});
-};
-
-var getCategory;
-getCategory = function() {
-	if (document.getElementById('categories')) pullCategory();
 };
