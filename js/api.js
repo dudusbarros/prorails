@@ -53,8 +53,6 @@ buildList = function(d, f) {
 	var e = document.createElement('ul');
 	e.classList.add('list');
 
-	console.log(d);
-
 	for (var i = d.length; i--; ) {
 		var li = f(d[i]);
 		li.classList.add('item');

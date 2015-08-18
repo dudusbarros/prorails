@@ -4,6 +4,10 @@
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
 
+body {
+	background-color: #f5f6f7 !important;
+}
+
 main {
 	color: #424242;
 	max-width: 72em;
@@ -82,10 +86,6 @@ h2 {
 	min-width: 16em;
 }
 
-#products .list .item .edit-area {
-	display: none;
-}
-
 #products .list .item .select-area,
 #products .list .item .edit-area {
 	background-color: #ffffff;
@@ -97,6 +97,21 @@ h2 {
 	min-height: 8em;
 }
 
+#products .list .item .edit-area {
+	display: none;
+	margin: 8px 0;
+	padding: 8px;
+}
+
+#products .list .item .edit-area input,
+#products .list .item .edit-area select {
+	padding: 0;
+	margin: 0;
+}
+
+#products .list .item .edit-area .btn {
+	margin: 0;
+}
 
 #products .list .item .select-area:hover {
 	background-color: #eeeeee;
@@ -107,14 +122,20 @@ h2 {
 	background-color: #e0e0e0;
 }
 
+#products .list .item .edit-area .code,
+#products .list .item .select-area .code {
+	font-size: .875em;
+}
+
+#products .list .item .edit-area .name,
 #products .list .item .select-area .name {
 	font-size: 1.3125em;
 	font-weight: 700;
 	margin-right: 4px;
 }
 
-#products .list .item .select-area .code {
-	font-size: .875em;
+#products .list .item .edit-area .name {
+	height: 1.5em;
 }
 
 #products .list .item .select-area .code:before {
@@ -126,7 +147,7 @@ h2 {
 }
 
 #products .list .item.edit .edit-area {
-	display: block;
+	display: flex;
 }
 
 #products .list .item.edit .select-area {

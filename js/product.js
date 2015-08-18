@@ -150,21 +150,25 @@ buildEditProductArea = function(e) {
 
 	var input_id = document.createElement('input');
 	input_id.classList.add('editProduct_id');
+	input_id.classList.add('id');
 	input_id.type = 'hidden';
 	input_id.value = e.getAttribute('data-product');
 
 	var inputName = document.createElement('input');
 	inputName.classList.add('editProductName');
+	inputName.classList.add('name');
 	inputName.type = 'text';
 	inputName.value = e.getAttribute('data-product-name');
 
 	var inputCode = document.createElement('input');
 	inputCode.classList.add('editProductCode');
+	inputCode.classList.add('code');
 	inputCode.type = 'text';
 	inputCode.value = e.getAttribute('data-product-code');
 
 	var inputProvider = document.createElement('select');
 	inputProvider.classList.add('editProductProvider');
+	inputProvider.classList.add('provider');
 	for (i = Providers.length; i--; ) {
 		s = document.createElement('option');
 		s.innerHTML = Providers[i].name;
@@ -174,6 +178,7 @@ buildEditProductArea = function(e) {
 
 	var inputCategory = document.createElement('select');
 	inputCategory.classList.add('editProductCategory');
+	inputCategory.classList.add('category');
 	for (i = Categories.length; i--; ) {
 		s = document.createElement('option');
 		s.innerHTML = Categories[i].name;
@@ -190,10 +195,10 @@ buildEditProductArea = function(e) {
 	inputAdd.addEventListener('click', pushProduct);
 
 	a.appendChild(input_id);
-	a.appendChild(inputName);
-	a.appendChild(inputCode);
 	a.appendChild(inputProvider);
 	a.appendChild(inputCategory);
+	a.appendChild(inputName);
+	a.appendChild(inputCode);
 	a.appendChild(inputAdd);
 
 	return a;
@@ -212,6 +217,7 @@ buildProduct = function(d) {
 
 	var a = document.createElement('a');
 	a.classList.add('select-area');
+	a.href = '#';
 
 	var name = document.createElement('span');
 	name.classList.add('name');
@@ -240,6 +246,7 @@ buildProduct = function(d) {
 
 var pullProduct;
 pullProduct = function() {
+
 	$.ajax({
 		cache: false,
 		url: 'i/product/pull/',
@@ -247,8 +254,21 @@ pullProduct = function() {
 			Product = false;
 		},
 		success: function(data) {
+
 			Product = data;
-			build(data, 'product', 'products', buildProduct, buildProductInput);
+
+			var time = 500;
+
+			var interval = setInterval(
+				function() {
+					if (!!Categories.length && !!Providers.length) {
+						console.log('asd');
+						build(data, 'product', 'products', buildProduct, buildProductInput);
+						clearInterval(interval);
+					}
+				}, 200);
+
 		}
 	});
+
 };
