@@ -4,23 +4,154 @@
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
 
+body {
+	background-color: #f5f6f7 !important;
+}
+
 main {
-	max-width: 60em;
+	color: #424242;
+	max-width: 72em;
 	width: 100%;
 	margin: 0 auto;
 }
 
 h2 {
+	font-size: 3.5em;
+	font-weight: 100;
+	line-height: 1.5;
+	margin-bottom: 4px;
+}
+
+.data {
+	min-height: 6em;
+	margin: .5em 8px 2em;
+}
+
+.data input,
+.data select,
+.data .btn {
+	height: 2em;
+	margin: 0 4px;
+}
+
+.data input,
+.data select {
+	background: none;
+	border: none;
+	border-bottom: solid 1px #bdbdbd;
+	border-radius: 0;
+	padding: 4px;
+}
+
+.data .btn {
+	padding: 8px;
+	color: #2196f3;
+	font-weight: 600;
+}
+
+.data .btn:hover {
+	background-color: #eeeeee;
+}
+
+.data .btn:focus,
+.data .btn:active {
+	background-color: #e0e0e0;
+}
+
+.data .list {
+	margin: 4px 4px;
+}
+
+.data .list .item .select-area {
+	display: flex;
+	background-color: #ffffff;
+	cursor: pointer;
+	margin: 8px 0;
+	padding: 8px;
+}
+
+.data .list .item .select-area:hover {
+	font-weight: 700;
+}
+
+#products .list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#products .list .item {
+	padding: 0 8px;
+	width: 100%;
+	max-width: 33.3333333%;
+	min-width: 16em;
+}
+
+#products .list .item .select-area,
+#products .list .item .edit-area {
+	background-color: #ffffff;
+	color: #424242;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-end;
+	min-height: 8em;
+}
+
+#products .list .item .edit-area {
 	display: none;
+	margin: 8px 0;
+	padding: 8px;
 }
 
-ul {
-	list-style: circle;
-	margin-left: 1em;
+#products .list .item .edit-area input,
+#products .list .item .edit-area select {
+	padding: 0;
+	margin: 0;
 }
 
-ul li {
-	display: list-item;
+#products .list .item .edit-area .btn {
+	margin: 0;
+}
+
+#products .list .item .select-area:hover {
+	background-color: #eeeeee;
+}
+
+#products .list .item .select-area:active,
+#products .list .item .select-area:focus {
+	background-color: #e0e0e0;
+}
+
+#products .list .item .edit-area .code,
+#products .list .item .select-area .code {
+	font-size: .875em;
+}
+
+#products .list .item .edit-area .name,
+#products .list .item .select-area .name {
+	font-size: 1.3125em;
+	font-weight: 700;
+	margin-right: 4px;
+}
+
+#products .list .item .edit-area .name {
+	height: 1.5em;
+}
+
+#products .list .item .select-area .code:before {
+	content: '(';
+}
+
+#products .list .item .select-area .code:after {
+	content: ')';
+}
+
+#products .list .item.edit .edit-area {
+	display: flex;
+}
+
+#products .list .item.edit .select-area {
+	display: none;
 }
 
 a.btn {
