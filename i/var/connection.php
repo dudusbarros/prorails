@@ -15,9 +15,9 @@ class Connection
 	 * BLUEHOST REMOTE
 	 */
 
-	/*private $_USER = "empreen1_magma";
-	private $_PASSWD = "o6NRAoNk@0[!bV";
-	private $_SCHEMA = "empreen1_scientific_venus";*/
+	/*private $_USER = "empreen1_noibe";
+	private $_PASSWD = "0b3RDM=Tt#gufgQC";
+	private $_SCHEMA = "empreen1_prorails";*/
 
 	/**
 	 * BLUEHOST REMOTE LOG
