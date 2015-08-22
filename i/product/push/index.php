@@ -39,6 +39,9 @@ try {
 
 		$o->push($c);
 
+		$r = $o->pull($c);
+		$o->fill(mysqli_fetch_assoc($r));
+
 	} else if (($name = $_GET['name']) &&
 			   ($provider_id = $_GET['provider_id']) &&
 			   ($code = $_GET['code']) &&
