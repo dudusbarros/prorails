@@ -11,17 +11,9 @@
 require_once('../vendor/autoload.php');
 require_once('Image.php');
 
-$s = \Image\Image::Test();
-
-Tinify\setKey('fduaTbUMoCknGiK5djqhhDtbW2l5SwYF');
-
-$t = \Tinify\Tinify::getClient();
-
-print_r($t);
-
 $p = $_FILES['photo'];
 
-//print_r($photo);
+$image = new Image($p);
 
 ?>
 
@@ -43,7 +35,7 @@ $p = $_FILES['photo'];
 
 	</form>
 
-	<img src="<?php echo '../../' ; ?>" alt="photo">
+	<img src="<?php echo '../../' . $image->getServer() . $image->getThumbLocation() . $image->getFileName(); ?>" alt="photo">
 
 </body>
 </html>

@@ -5,8 +5,6 @@
  * Licensed under MIT (https://github.com/noibe/villa/blob/master/LICENSE)
  */
 
-namespace Image;
-
 class Image {
 
 	public $_id;
@@ -27,10 +25,6 @@ class Image {
 	private $resize;
 	private $tinyResult;
 
-	public static function Test() {
-		return 'oi';
-	}
-
 	/**
 	 * Image constructor.
 	 * @param $path
@@ -49,7 +43,7 @@ class Image {
 				$this->_id = '';
 
 				$this->resize = array(
-					'height'=>256
+					'height' => 720
 				);
 
 				if ($t = $this->tinify($this->tmp_name, $this->resize)) {
@@ -77,6 +71,70 @@ class Image {
 		$this->_id = $id;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getThumbLocation()
+	{
+		return $this->thumbLocation;
+	}
+
+	/**
+	 * @param string $thumbLocation
+	 */
+	public function setThumbLocation($thumbLocation)
+	{
+		$this->thumbLocation = $thumbLocation;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getLocation()
+	{
+		return $this->location;
+	}
+
+	/**
+	 * @param mixed $location
+	 */
+	public function setLocation($location)
+	{
+		$this->location = $location;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getServer()
+	{
+		return $this->server;
+	}
+
+	/**
+	 * @param string $server
+	 */
+	public function setServer($server)
+	{
+		$this->server = $server;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFileName()
+	{
+		return $this->fileName;
+	}
+
+	/**
+	 * @param string $fileName
+	 */
+	public function setFileName($fileName)
+	{
+		$this->fileName = $fileName;
+	}
+
 	public function persistDiretory($dir = '') {
 		if (!file_exists($this->location . $dir)) mkdir($this->location . $dir, 0777, true);
 	}
@@ -86,10 +144,10 @@ class Image {
 	}
 
 	public function buildFileName() {
-		$fn = $this->getGenerateRandomString(64);
+		$fn = $this->getGenerateRandomString(32);
 
 		while (file_exists($this->location . $fn))
-			$fn = $this->getGenerateRandomString(64);
+			$fn = $this->getGenerateRandomString(32);
 
 		return $fn;
 	}
@@ -149,9 +207,13 @@ class Image {
 		try {
 			$t = Tinify\fromFile($tmp_file);
 
-			if ($resize) $t->resize($resize);
+			if (!$resize) return $t;
+			else {
+				$r = $t->resize($resize);
+				return $r;
+			}
 
-			return $t;
+
 		} catch (Exception $e) {
 			echo $e;
 			return false;
